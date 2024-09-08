@@ -13,9 +13,9 @@ class CalculadoraProbabilidadAdopcionTest {
 
 
     @Test
-    void escenario01(){
+    void deberiaDevolverProbabilidadAltaParaMascotaConEdadBajaPesoBajo(){
         //Edad 4 años y 4 kilos -> ALTA
-
+        //ARRANGE (organizar)
         RegistroMascotaDto registroMascotaDto= new RegistroMascotaDto(
                 TipoMascota.GATO,
                 "Miau",
@@ -31,15 +31,17 @@ class CalculadoraProbabilidadAdopcionTest {
         ));
         Mascota mascota = new Mascota(registroMascotaDto, refugio);
 
+        //ACT (acción)
         CalculadoraProbabilidadAdopcion calculadora = new CalculadoraProbabilidadAdopcion();
         ProbabilidadAdopcion probabilidad = calculadora.calcular(mascota);
 
+        //ASSERT (comprobación)
         Assertions.assertEquals(ProbabilidadAdopcion.ALTA, probabilidad);
     }
 
 
     @Test
-    void escenario02(){
+    void deberiaDevolverProbabilidadMediaParaMascotaConEdadAltaPesoBajo(){
         //Edad 15 años y 4 kilos -> MEDIA
 
         RegistroMascotaDto registroMascotaDto= new RegistroMascotaDto(

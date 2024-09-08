@@ -38,8 +38,7 @@ public class CalculadoraProbabilidadAdopcion {
         // penalizando por la edad avanzada
         if (edad >= 15) {
             nota -= 5;
-        }
-        if (edad >= 10) {
+        }else if (edad >= 10) {
             nota -= 4;
         }
 
