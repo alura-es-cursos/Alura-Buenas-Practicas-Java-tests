@@ -21,7 +21,7 @@ public class ValidacionTutorConLimiteDeAdopciones implements ValidacionesSolicit
     @Autowired
     private TutorRepository tutorRepository;
 
-    public void validar(SolicitudAdopcionDTO dto) {
+    /*public void validar(SolicitudAdopcionDTO dto) {
         Tutor tutor = tutorRepository.getReferenceById(dto.idTutor());
         List<Adopcion> adopciones = adopcionRepository.findAll();
         for (Adopcion a : adopciones) {
@@ -32,6 +32,13 @@ public class ValidacionTutorConLimiteDeAdopciones implements ValidacionesSolicit
             if (contador == 5) {
                 throw new ValidacionException("Tutor llegó al limite máximo de 5 adopciones!");
             }
+        }
+    }*/
+    public void validar(SolicitudAdopcionDTO dto) {
+        Integer adocoesTutor = adopcionRepository.countByTutorIdAndStatus(dto.idTutor(), StatusAdopcion.APROBADO);
+
+        if (adocoesTutor == 5) {
+            throw new ValidacionException("Tutor llegó al limite máximo de 5 adopciones!");
         }
     }
 }

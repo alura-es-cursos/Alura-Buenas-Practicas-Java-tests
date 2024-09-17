@@ -61,7 +61,7 @@ public class RefugioController {
             Refugio refugio = refugioService.cargarRefugio(idONombre);
             mascotaService.registrarMascota(refugio, dto);
             return ResponseEntity.ok().build();
-        } catch (EntityNotFoundException enfe) {
+        } catch (ValidacionException exception) {
             return ResponseEntity.notFound().build();
         }
     }
